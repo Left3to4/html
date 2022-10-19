@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form tag</title>
+</head>
+<body>
+	<form action="#" method="post"> <!-- method에는 get(입력 정보를 URL에 보여줌)방식과 post(입력 정보를 숨김)방식이 메인 라인 -->
+		이름: <input type="text" name="userName">
+		<br>
+		아이디: <input type="text" name="userID">
+		<br>
+		<input type="password" name="userPW">
+		<br>
+		연락처: <input type="text" name="phone1" size="5"> -
+		<input type="text" name="phone2" size="5"> -
+		<input type="text" name="phone3" size="5">
+		<br>
+		사진: <input type="file" name="picture">
+		<br>
+		성별구분: <input type="radio" name="gender" value="male" checked="checked"> 남 <!-- checked: 기본값 설정 -->
+		<input type="radio" name="gender" value="female"> 여 <!-- 변수 이름(name)을 똑같이 설정햐였으므로 그룹이 됨 -->
+		<br>
+		사용언어: <input type="checkbox" name="lang" value="kor" checked="checked"> 한글
+		<input type="checkbox" name="lang" value="jpn"> 日本語
+		<input type="checkbox" name="lang" value="eng"> English
+		<input type="checkbox" name="lang" value="ger"> Deutsch
+		<br>
+		자기소개: <br>
+		<textarea rows="5" cols="20">간단하게 입력하세요</textarea>
+		<br>
+		국적:
+		<select>
+			<option>Korea</option>
+			<option>Japan</option>
+			<option>USA</option>
+		</select>
+		<br>
+		주력 오프닝:
+		<select multiple="multiple">
+			<option>이탈리안 게임</option>
+			<option>루이 로페즈</option>
+			<option>시실리안 디펜스</option>
+			<option>런던 시스템</option>
+		</select>
+		<br>
+		<input type="submit" name="OkayBtn" value="OK">
+	</form>
+</body>
+</html>
