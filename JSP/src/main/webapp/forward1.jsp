@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="response2.jsp" method="get">
-		당신의 나이는? <input type="text" name="age" size=4>
-		<input type="submit" name="button" value="입력">
-	</form>
+<form action="forward2.jsp">
+첫 번째 수: <input type="text" name="num1"><br>
+두 번째 수: <input type="text" name="num2"><br>
+<input type="submit" value="OK">
+</form>
 </body>
 </html>

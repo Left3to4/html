@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="response2.jsp" method="get">
-		당신의 나이는? <input type="text" name="age" size=4>
-		<input type="submit" name="button" value="입력">
-	</form>
+<form action="response01" method="post">
+사이트명: <input type="text" name="sitename"><br>
+<input type="submit" value="OK">
+</form>
 </body>
 </html>
