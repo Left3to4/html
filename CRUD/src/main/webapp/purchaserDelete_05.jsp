@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%request.setCharacterEncoding("utf-8"); %>
-<h3>수정결과</h3>
-ID: ${ID }<br>
-이름: ${NAME }<br>
-전화번호: ${PHONE }<br>
-주소: ${ADDRESS }<br>
+<h3>사용자 ID: ${ID }</h3>
+상기 정보가 삭제되었습니다.
 </body>
 </html>

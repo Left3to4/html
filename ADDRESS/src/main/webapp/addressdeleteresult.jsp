@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%request.setCharacterEncoding("utf-8"); %>
-<h3>수정결과</h3>
-ID: ${ID }<br>
-이름: ${NAME }<br>
-전화번호: ${PHONE }<br>
-주소: ${ADDRESS }<br>
+<div align="center">
+<h3>사용자 번호: ${ID }</h3>
+상기 정보가 삭제되었습니다.
+<br>
+<a href="http://localhost:8080/ADDRESS/addresstable.jsp">처음으로</a>
+</div>
 </body>
 </html>

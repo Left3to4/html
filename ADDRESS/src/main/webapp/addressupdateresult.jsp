@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%request.setCharacterEncoding("utf-8"); %>
 <h3>수정결과</h3>
-ID: ${ID }<br>
-이름: ${NAME }<br>
-전화번호: ${PHONE }<br>
-주소: ${ADDRESS }<br>
+ID: <%=session.getAttribute("ID") %><br>
+이름: <%=session.getAttribute("NAME") %><br>
+전화번호: <%=session.getAttribute("PHONE") %><br>
+주소: <%=session.getAttribute("ADDRESS") %>
+<%session.invalidate(); %>
 </body>
 </html>
