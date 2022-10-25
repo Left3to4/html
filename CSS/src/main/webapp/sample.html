@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+body { /* body 태그 전체에 적용 */
+	font-family: "바탕"; /* 폰트 변경 */
+}
+
+p {
+	font-family: "고딕";
+}
+
+p:hover {
+	font-style: italic;
+}
+
+h3:hover { /* h3 태그에 마우스 올렸을 때 */
+	background: blue; /* 배경색 변경 */
+	color: #ffffff; /* 글자 색 변경 */
+}
+
+#red:active { /* id가 red인 태그를 클릭했을 때 */
+	color: red;
+}
+
+input:focus { /* form의 내용이 입력 중일 때 */
+	background: #dddddd;
+}
+
+div.box {
+	background: yellow;
+	border-style: solid; /* 직선 */
+	width: 150px; /* 너비 */
+	height: 50px; /* 높이 */
+	margin: 40px; /* 가장 바깥쪽 여백 */
+	border-width: 30px; /* 패딩 외부의 외곽선 */
+	border-left-color: red; /*왼쪽 외곽선 색 */
+	border-left-style: inset; /*왼쪽 외곽선 스타일 */
+	border-right-color: blue; /*오른쪽 외곽선 색 */
+	border-right-style: groove; /*오른쪽 외곽선 스타일 */
+	border-top-color: green; /*위쪽 외곽선 색 */
+	border-top-style: dashed; /*위쪽 외곽선 스타일 */
+	border-bottom-color: orange; /*아래쪽 외곽선 색 */
+	border-bottom-style: dotted; /*아래쪽 외곽선 점선 */
+	padding: 20px; /* 콘텐츠를 직접 둘러싸는 내부 여백 */
+}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>blue</h3>
+	<h2 id="red">red</h2>
+
+	<form action="#">
+		<input type="text">
+	</form>
+
+	<p style="font-size: 50px">50픽셀 폰트</p><!-- 절대 크기 -->
+	<p style="font-size: 2em">2em 폰트</p><!-- 현재 폰트의 2배 크기(권장 사항) -->
+	<p style="font-size: medium">medium size 폰트</p><!-- medium 사이즈가 얼마나 큰지는 브라우저마다 다름(옵션: xx-small, small, large, xx-large 등) -->
+	
+	<hr> <!-- 가로선 -->
+	
+	<div class="box" align="center">
+		<span style="background: skyblue">sample</span>
+	</div>
+	
+	<p style="phont-size:100px;text-shadow: 3px 3px 5px gray;">그림자</p> <!-- 3px 2개: 원본 텍스트와 그림자 텍스트 사이의 수평/수직 거리, 2px: 그림자 번짐 효과, gray: 그림자 색깔 -->
+</body>
+</html>
