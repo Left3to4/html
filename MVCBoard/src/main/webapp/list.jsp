@@ -13,7 +13,10 @@ body {
 	background-color: #99ccff;
 }
 div {
-	margin : 10px;
+	margin : 20px;
+}
+a{
+color:black;
 }
 </style>
 </head>
@@ -21,7 +24,7 @@ div {
 <div align="center" style="height:50%">
 <div align="center" style="background-color:#e7e7e7;width:50%">
 	<h1>MVC 게시판</h1>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<tr style="background-color:#bbbbbb">
 			<th>번호</th>
 			<th>작성자</th>
@@ -32,13 +35,13 @@ div {
 			<tr>
 				<td>${dto.bid}</td>
 				<td>${dto.bName}</td>
-				<td><a href="content_view.do?bId=${dto.bid}">${dto.bTitle}</a></td>
+				<td><a href="content_view.do?bid=${dto.bid}">${dto.bTitle}</a></td>
 				<td>${dto.bDate}</td>
 			</tr>
 		</c:forEach>
 		<tr>
 			
-			<td colspan="5" align="center"><div align="center" style="background-color:#81c147;width:60px;height:100%"><a href="write_view.do">글작성</a></div></td>
+			<td colspan="5" align="center"><span style="background-color:#99ccff;width:60px;height:100%"><a href="write_view.do">글작성</a></span></td>
 			
 		</tr>
 	</table>

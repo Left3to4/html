@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsplec.bbs.command.BCommand;
 import com.jsplec.bbs.command.BListCommand;
+import com.jsplec.bbs.command.bContentCommand;
+import com.jsplec.bbs.command.bDeleteCommand;
+import com.jsplec.bbs.command.bModifyCommand;
+import com.jsplec.bbs.command.bWriteCommand;
 
 /**
  * Servlet implementation class BFrontcontroller
@@ -61,9 +65,40 @@ public class BFrontcontroller extends HttpServlet {
 				command.execute(request, response);
 				viewPage="list.jsp";
 				break;
+			
+			case("/write_view.do"):
+				command=new BListCommand();
+				command.execute(request, response);
+				viewPage="write_view.jsp";
+				break;
+			
+			case("/write.do"):
+				command=new bWriteCommand();
+				command.execute(request, response);
+				viewPage="list.do";
+				break;
+				
+			case("/content_view.do"):
+				command=new bContentCommand();
+				command.execute(request, response);
+				viewPage="content_view.jsp";
+				break;
+				
+			case("/modify.do"):
+				command=new bModifyCommand();
+				command.execute(request, response);
+				viewPage="list.do";
+				break;
+				
+			case("/delete.do"):
+				command=new bDeleteCommand();
+				command.execute(request, response);
+				viewPage="list.do";
+				break;
 			}
 			
 			RequestDispatcher dispatcher=request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 	}
 }
+

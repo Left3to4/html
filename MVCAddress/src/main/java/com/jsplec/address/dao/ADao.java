@@ -1,22 +1,21 @@
-package com.jsplec.bbs.dao;
+package com.jsplec.address.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.jsplec.bbs.dto.BDto;
+import com.jsplec.address.dto.ADto;
 
-public class BDao {
-
+public class ADao {
+	
 	DataSource dataSource;
-
-	public BDao() {
+	
+	public ADao() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mvc"); // 데이터베이스 연결 끝
@@ -24,11 +23,9 @@ public class BDao {
 			e.printStackTrace();
 		}
 	}
-
-	// select all
-
-	public ArrayList<BDto> list() {
-		ArrayList<BDto> dtos = new ArrayList<BDto>();
+	
+	public ArrayList<ADto> list() {
+		ArrayList<ADto> dtos = new ArrayList<ADto>();
 
 		Connection connection = null;
 		PreparedStatement ps = null;
@@ -37,18 +34,19 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bid, bName, bTitle, bContent, bDate from mvc_board";
+			String query = "select id, name, phone, address, email, relationship from addresstable";
 			ps = connection.prepareStatement(query);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				int bid = rs.getInt("bid");
-				String bName = rs.getString("bName");
-				String bTitle = rs.getString("bTitle");
-				String bContent = rs.getString("bContent");
-				Timestamp bDate = rs.getTimestamp("bDate");
+				String id = rs.getString("id");
+				String name = rs.getString("name");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String email = rs.getString("email");
+				String relationship = rs.getString("relationship");
 
-				BDto dto = new BDto(bid, bName, bTitle, bContent, bDate);
+				ADto dto = new ADto(id, name, phone, address, email, relationship);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -66,22 +64,23 @@ public class BDao {
 		return dtos;
 	}
 	
-	public int write(String bName, String bTitle, String bContent) {
+	public void write(String name, String phone, String address, String email, String relationship) {
 		Connection connection = null;
 		PreparedStatement ps = null;
-		int returnValue=0;
 
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "insert into mvc_board (bName, bTitle, bContent, bDate) values (?, ?, ?, now());";
+			String query = "insert into addresstable (name, phone, address, email, relationship) values (?, ?, ?, ?, ?);";
 			ps = connection.prepareStatement(query);
 			
-			ps.setString(1,  bName);
-			ps.setString(2,  bTitle);
-			ps.setString(3,  bContent);
+			ps.setString(1,  name);
+			ps.setString(2,  phone);
+			ps.setString(3,  address);
+			ps.setString(4,  email);
+			ps.setString(5,  relationship);
 			
-			returnValue=ps.executeUpdate();
+			ps.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,11 +92,10 @@ public class BDao {
 				e2.printStackTrace();
 			}
 		}
-		return returnValue;
 	}
 	
-	public BDto contentView(String sbid) {
-		BDto dto = new BDto();
+	public ADto detailView(String sid) {
+		ADto dto = new ADto();
 
 		Connection connection = null;
 		PreparedStatement ps = null;
@@ -106,19 +104,20 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bid, bName, bTitle, bContent, bDate from mvc_board where bid=?";
+			String query = "select id, name, phone, address, email, relationship from addresstable where id=?";
 			ps = connection.prepareStatement(query);
-			ps.setInt(1, Integer.parseInt(sbid));
+			ps.setInt(1, Integer.parseInt(sid));
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				int bid = rs.getInt("bid");
-				String bName = rs.getString("bName");
-				String bTitle = rs.getString("bTitle");
-				String bContent = rs.getString("bContent");
-				Timestamp bDate = rs.getTimestamp("bDate");
+				String id=rs.getString("id");
+				String name = rs.getString("name");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String email = rs.getString("email");
+				String relationship = rs.getString("relationship");
 
-				dto = new BDto(bid, bName, bTitle, bContent, bDate);
+				dto=new ADto(id, name, phone, address, email, relationship);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,7 +134,7 @@ public class BDao {
 		return dto;
 	}
 	
-	public void modify(String sbid, String sbName, String sbTitle, String sbContent) {
+	public void modify(String id, String name, String phone, String address, String email, String relationship) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -143,12 +142,15 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "update mvc_board set bName=?, bTitle=?, bContent=? where bid=?";
+			String query = "update addresstable set name=?, phone=?, address=?, email=?, relationship=? where id=?";
 			ps = connection.prepareStatement(query);
-			ps.setString(1, sbName);
-			ps.setString(2, sbTitle);
-			ps.setString(3, sbContent);
-			ps.setInt(4, Integer.parseInt(sbid));
+			ps.setString(1, name);
+			ps.setString(2, phone);
+			ps.setString(3, address);
+			ps.setString(4, email);
+			ps.setString(5, relationship);
+			ps.setString(5, relationship);
+			ps.setString(6, id);
 			ps.executeUpdate();
 
 		} catch (Exception e) {
@@ -164,7 +166,7 @@ public class BDao {
 		}
 	}
 	
-	public void delete(String bid) {
+	public void delete(String id) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -172,9 +174,9 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "delete from mvc_board where bid=?";
+			String query = "delete from addresstable where id=?";
 			ps = connection.prepareStatement(query);
-			ps.setString(1, bid);
+			ps.setString(1, id);
 			ps.executeUpdate();
 
 		} catch (Exception e) {
